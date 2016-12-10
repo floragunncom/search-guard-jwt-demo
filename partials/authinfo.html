@@ -1,0 +1,16 @@
+<div class="row" data-ng-init="authinfo()">
+    <div class="col-lg-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Authentication info from Search Guard
+            </div>
+            <div class="panel-body" data-ng-hide="authinfo">
+                <p>Fetching data...</p>
+            </div>
+            <div class="panel-body" data-ng-show="authinfo">
+                <pre>{{authinfo}}</pre>
+
+            </div>
+        </div>
+    </div>
+</div>
