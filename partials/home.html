@@ -3,17 +3,14 @@
         <div class="jumbotron">
             <h1 data-ng-show="token">You are logged in.</h1>
             <h3 data-ng-show="token">Raw token data:</h3>
-            <pre data-ng-show="token">Raw token data: {{$root.token}}</pre>
+            <textarea style="min-width: 100%" rows="4" data-ng-show="token">{{$root.token}}</textarea>
             <h1 data-ng-hide="token">You are not logged in.</h1>
 
             <div class="row">
                 <div data-ng-hide="token" class="col-md-6">
-                    <a href="#/signup" class="btn btn-default btn-primary margin-right" role="button">Sign up</a>
-                    or
+                    <a href="#/signup" class="btn btn-default btn-primary margin-right" role="button">Create user</a>
+                    &nbsp;or&nbsp;
                     <a href="#/signin" class="btn btn-default btn-primary margin-left" role="button">Sign in</a>
-                </div>
-                <div data-ng-show="token" class="col-md-6">
-                    <a href="#/restricted" class="btn btn-default btn-primary" role="button">Restricted area</a>
                 </div>
             </div>
         </div>

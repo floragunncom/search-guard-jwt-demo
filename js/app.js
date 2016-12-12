@@ -16,6 +16,10 @@
                     templateUrl: 'partials/home.html',
                     controller: 'HomeController'
                 }).
+                when('/users', {
+                    templateUrl: 'partials/users.html',
+                    controller: 'UsersController'
+                }).
                 when('/signin', {
                     templateUrl: 'partials/signin.html',
                     controller: 'HomeController'

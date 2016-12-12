@@ -75,7 +75,26 @@
                         $scope.authinfo = JSON.stringify(data, undefined, 2);
                     })
                     .error(function (data) {
-                        $scope.authinfo = JSON.stringify(data, undefined, 2);
+                        $scope.authinfo = "No info available, make sure you are logged in.";
+                    })
+
+
+            }])
+
+        .controller('UsersController', ['$rootScope', '$scope', '$location', '$localStorage', 'Auth', '$http', 'urls',
+            function ($rootScope, $scope, $location, $localStorage, Auth, $http, urls) {
+
+                $rootScope.error = '';
+                $rootScope.tokenClaims = Auth.getTokenClaims();
+                $rootScope.token = $localStorage.token;
+                $scope.authinfo = '';
+
+                $http.get(urls.BASE_JWT + '/users')
+                    .success(function (data) {
+                        $scope.users = data;
+                    })
+                    .error(function (data) {
+                        $rootScope.error = 'Could not fetch users.';
                     })
 
 
@@ -84,15 +103,63 @@
         .controller('QueryController', ['$rootScope', '$scope', '$location', '$localStorage', 'Auth', '$http', 'urls',
             function ($rootScope, $scope, $location, $localStorage, Auth, $http, urls) {
 
+                $scope.method = "GET";
+
                 $scope.executequery = function () {
-                    $http.post(urls.BASE_ES + '/' + $scope.index + '/' + $scope.type,$scope.query )
+                    $http.post(urls.BASE_ES + '/' + $scope.index + '/' + $scope.type+'/_search?pretty=true',$scope.query )
                         .success(function (data) {
-                            $scope.queryresult = data;
+                            $scope.queryresult = JSON.stringify(data, undefined, 2);
                         })
                         .error(function (data) {
                             $scope.queryresult = JSON.stringify(data, undefined, 2);
                         })
+
                 };
+
+                $scope.sc_all_employees = function () {
+                    $scope.sc_employees();
+                    $scope.createquery(matchall);
+                };
+
+                $scope.sc_all_manager = function () {
+                    $scope.sc_employees();
+                    $scope.createquery(manager);
+                };
+
+                $scope.sc_ceo = function () {
+                    $scope.sc_employees();
+                    $scope.createquery(ceo);
+                }
+
+                $scope.sc_sum_salary = function () {
+                    $scope.sc_employees();
+                    var query = '{ "query" : { "match_all": {} }, "aggs" : { "salary_total" : { "sum" : { "field" : "Salary" } } } }';
+                    $scope.query = JSON.stringify(JSON.parse(query), undefined, 2);
+                }
+
+                $scope.sc_all_revenue = function () {
+                    $scope.sc_revenue();
+                    $scope.createquery(matchall);
+                };
+
+                $scope.sc_employees = function () {
+                    $scope.index = 'companydatabase';
+                    $scope.type = 'employees';
+                };
+
+                $scope.sc_revenue = function () {
+                    $scope.index = 'companyrevenue';
+                    $scope.type = 'revenue';
+                };
+
+                $scope.createquery = function (querystub) {
+                    var query = '{"query": {' +querystub + '}}';
+                    $scope.query = JSON.stringify(JSON.parse(query), undefined, 2);
+                }
+
+                var matchall = '"match_all": {}';
+                var ceo='"match": { "Designation": "CEO" }'
+                var manager='"match": { "Designation": "Manager" }'
             }])
 
 })();

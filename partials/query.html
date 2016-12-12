@@ -1,11 +1,43 @@
 <div class="row">
+    <div class="col-lg-12 text-center">
+        Shortcuts
+
+    </div>
+</div>
+
+<div class="row" style="margin-bottom: 10px;">
+    <div class="col-lg-12">
+        <button type="button" ng-click="sc_all_employees()" class="btn btn-primary">All employees</button>
+        <button type="button" ng-click="sc_all_manager()" class="btn btn-primary">All Managers</button>
+        <button type="button" ng-click="sc_ceo()" class="btn btn-primary">CEO</button>
+        <button type="button" ng-click="sc_sum_salary()" class="btn btn-primary">Salary total</button>
+        <button type="button" ng-click="sc_all_revenue()" class="btn btn-primary">All revenue</button>
+    </div>
+</div>
+<div class="row">
     <div class="col-lg-12">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <strong>Execute query</strong>
+                <strong>
+                    Execute query
+                </strong>
             </div>
             <div class="panel-body">
                 <form class="form-horizontal" role="form" ng-submit="executequery()">
+                    <!--
+                    <div class="form-group">
+                        <label for="method" class="col-sm-2 control-label">Method</label>
+
+                        <div class="col-sm-10">
+                            <select name="method" ng-model="method" id="method" style="color: black;">
+                                <option selected value="GET">GET</option>
+                                <option value="PUT">PUT</option>
+                                <option value="POST">POST</option>
+                                <option value="DELETE">DELETE</option>
+                            </select>
+                        </div>
+                    </div>
+                    -->
                     <div class="form-group">
                         <label for="index" class="col-sm-2 control-label">Index</label>
 
@@ -27,7 +59,7 @@
 
                         <div class="col-sm-10">
                             <textarea class="form-control" id="query" name="query"
-                                   placeholder="Query" ng-model="query"></textarea>
+                                      placeholder="Query" ng-model="query"></textarea>
                         </div>
                     </div>
                     <div class="form-group">
