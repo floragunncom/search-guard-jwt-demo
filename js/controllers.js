@@ -97,6 +97,17 @@
                         $rootScope.error = 'Could not fetch users.';
                     })
 
+                $scope.deleteUser = function (user) {
+                    $http.delete(urls.BASE_JWT + '/users?username='+user.username)
+                        .success(function (data) {
+                            var index = $scope.users.indexOf(user);
+                            $scope.users.splice(index, 1);
+
+                        })
+                        .error(function (data) {
+                            $rootScope.error = 'User not found.';
+                        })
+                };
 
             }])
 

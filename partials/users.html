@@ -17,10 +17,12 @@
                     <tr style="font-weight: bold">
                             <td>Username</td>
                             <td>Roles</td>
+                            <td>Action</td>
                     </tr>
                         <tr ng-repeat="user in users">
                             <td>{{user.username}}</td>
                             <td>{{user.roles}}</td>
+                            <td><a ng-click="deleteUser(user)">Delete</a></td>
                         </tr>
                 </table>
             </div>
