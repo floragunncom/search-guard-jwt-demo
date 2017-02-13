@@ -154,12 +154,12 @@
                 };
 
                 $scope.sc_employees = function () {
-                    $scope.index = 'companydatabase';
+                    $scope.index = 'humanresources';
                     $scope.type = 'employees';
                 };
 
                 $scope.sc_revenue = function () {
-                    $scope.index = 'companyrevenue';
+                    $scope.index = 'finance';
                     $scope.type = 'revenue';
                 };
 
