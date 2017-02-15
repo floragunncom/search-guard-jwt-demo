@@ -8,7 +8,7 @@
     ])
         .constant('urls', {
             BASE_JWT: 'http://localhost:3001',
-            BASE_ES: 'https://localhost:9200'
+            BASE_ES: 'https://sgssl-0.example.com:9200'
         })
         .config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
             $routeProvider.
